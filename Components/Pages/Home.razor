@@ -1,0 +1,106 @@
+@inherits ViewModelPageBase<HomeViewModel>
+@rendermode InteractiveServer
+
+<PageTitle>@VM.Title - Task Management</PageTitle>
+
+@* 1. Header with a greeting *@
+<div class="mb-4">
+    <h1 class="display-6">@VM.Title</h1>
+    <p class="lead text-muted mb-0">Welcome back, @(CurrentUser?.Identity?.Name)!</p>
+</div>
+
+@* 2. Error message *@
+@if (!string.IsNullOrEmpty(VM.ErrorMessage))
+{
+    <div class="alert alert-danger">@VM.ErrorMessage</div>
+}
+
+@* 3. Spinner while the stats are loading *@
+@if (VM.IsLoading)
+{
+    <div class="text-center my-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2 text-muted">Loading...</p>
+    </div>
+}
+else
+{
+    @* 4. Stat cards *@
+    <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="text-muted small">Total tasks</div>
+                    <div class="display-6 fw-semibold">@VM.Stats.Total</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card warning">
+                <div class="card-body">
+                    <div class="text-muted small">In progress</div>
+                    <div class="display-6 fw-semibold">@VM.Stats.InProgress</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card success">
+                <div class="card-body">
+                    <div class="text-muted small">Completed</div>
+                    <div class="display-6 fw-semibold">@VM.Stats.Completed</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card info">
+                <div class="card-body">
+                    <div class="text-muted small">Categories</div>
+                    <div class="display-6 fw-semibold">@VM.Stats.Categories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* 5. Latest tasks *@
+    <h2 class="h5 mt-5 mb-3">Latest tasks</h2>
+    @if (VM.RecentTasks.Any())
+    {
+        <div class="table-card table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in VM.RecentTasks)
+                    {
+                        <tr>
+                            <td>@task.Title</td>
+                            <td>
+                                @if (task.Category is not null)
+                                {
+                                    <span class="badge" style="background-color: @task.Category.Color;">@task.Category.Name</span>
+                                }
+                            </td>
+                            <td><span class="badge @TaskDisplay.PriorityBadge(task.Priority)">@TaskDisplay.PriorityLabel(task.Priority)</span></td>
+                            <td><span class="badge @TaskDisplay.StatusBadge(task.Status)">@TaskDisplay.StatusLabel(task.Status)</span></td>
+                            <td>@TaskDisplay.Date(task.CreatedAt)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            You don't have any tasks yet.
+            <a href="@AppRoutes.Tasks" class="alert-link">Go to the Tasks page</a> to create your first one!
+        </div>
+    }
+}

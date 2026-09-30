@@ -1,0 +1,50 @@
+/* 1. Global styles: light background and system font */
+body {
+    background-color: #f5f7fb;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* 2. Dashboard stat cards */
+.stat-card {
+    border: none;
+    border-left: 4px solid var(--bs-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+}
+
+.stat-card.warning { border-left-color: var(--bs-warning); }
+.stat-card.success { border-left-color: var(--bs-success); }
+.stat-card.info    { border-left-color: var(--bs-info); }
+
+/* 3. Tables with a light shadow */
+.table-card {
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+    overflow: hidden;
+}
+
+/* 4. Form validation messages */
+.validation-message {
+    color: var(--bs-danger);
+    font-size: .875rem;
+}
+
+/* 5. Blazor error bar (hidden until needed) */
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}

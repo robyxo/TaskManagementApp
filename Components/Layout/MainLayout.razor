@@ -1,0 +1,64 @@
+@inherits LayoutComponentBase
+
+@* 1. Top navigation bar, the same for every page *@
+<nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-semibold" href="@AppRoutes.Home">
+            <i class="bi bi-check2-square me-1"></i> Task Management
+            @* 2. Badge with the data mode (PostgreSQL or in-memory demo data) *@
+            <span class="badge @DataModeBadge ms-2 fw-normal small">@DataSettings.ModeLabel</span>
+        </a>
+
+        <ul class="navbar-nav flex-row align-items-center gap-3 ms-auto">
+            <AuthorizeView>
+                @* 3. Menu for the logged-in user *@
+                <Authorized>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="@AppRoutes.Home" Match="NavLinkMatch.All">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="@AppRoutes.Tasks">
+                            <i class="bi bi-list-task"></i> Tasks
+                        </NavLink>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <span class="navbar-text small">@context.User.Identity?.Name</span>
+                    </li>
+                    <li class="nav-item">
+                        @* 4. Logout is a POST to the endpoint mapped in Program.cs *@
+                        <form action="@AppRoutes.Logout" method="post">
+                            <AntiforgeryToken />
+                            <button type="submit" class="btn btn-outline-light btn-sm">
+                                <i class="bi bi-box-arrow-right"></i> Log out
+                            </button>
+                        </form>
+                    </li>
+                </Authorized>
+
+                @* 5. Menu for anonymous users *@
+                <NotAuthorized>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="@AppRoutes.Login">Log in</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="@AppRoutes.Register">Sign up</NavLink>
+                    </li>
+                </NotAuthorized>
+            </AuthorizeView>
+        </ul>
+    </div>
+</nav>
+
+@* 6. Blazor renders the current page here *@
+<main class="container-fluid py-4">
+    @Body
+</main>
+
+@* 7. Error bar Blazor shows if the connection to the server drops *@
+<div id="blazor-error-ui">
+    An unexpected error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">✕</a>
+</div>

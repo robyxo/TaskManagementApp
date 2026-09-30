@@ -1,0 +1,105 @@
+{
+  "demoUser": {
+    "email": "demo@taskmanager.local",
+    "password": "Demo123!",
+    "fullName": "Demo User"
+  },
+  "categories": [
+    { "name": "Work", "color": "#0d6efd", "description": "Job related tasks" },
+    { "name": "Personal", "color": "#198754", "description": "Home and personal errands" },
+    { "name": "Study", "color": "#6f42c1", "description": "Courses and learning" },
+    { "name": "Health", "color": "#dc3545", "description": "Sport and wellbeing" }
+  ],
+  "tasks": [
+    {
+      "title": "Prepare the sprint demo",
+      "description": "Slides and a short live demo for the client meeting.",
+      "category": "Work",
+      "status": "InProgress",
+      "priority": "High",
+      "dueInDays": 2,
+      "createdDaysAgo": 3
+    },
+    {
+      "title": "Review pull requests",
+      "description": "Two PRs waiting on the API project.",
+      "category": "Work",
+      "status": "NotStarted",
+      "priority": "Medium",
+      "dueInDays": 1,
+      "createdDaysAgo": 1
+    },
+    {
+      "title": "Update the project documentation",
+      "description": "README and architecture notes.",
+      "category": "Work",
+      "status": "Completed",
+      "priority": "Low",
+      "dueInDays": null,
+      "createdDaysAgo": 9
+    },
+    {
+      "title": "Fix the login redirect bug",
+      "description": "Users land on the wrong page after login.",
+      "category": "Work",
+      "status": "Completed",
+      "priority": "High",
+      "dueInDays": null,
+      "createdDaysAgo": 6
+    },
+    {
+      "title": "Book the car service",
+      "description": null,
+      "category": "Personal",
+      "status": "NotStarted",
+      "priority": "Medium",
+      "dueInDays": 7,
+      "createdDaysAgo": 2
+    },
+    {
+      "title": "Pay the electricity bill",
+      "description": "Due at the end of the month.",
+      "category": "Personal",
+      "status": "InProgress",
+      "priority": "High",
+      "dueInDays": 4,
+      "createdDaysAgo": 5
+    },
+    {
+      "title": "Finish the Entity Framework Core course",
+      "description": "Modules 6 to 8: relationships and migrations.",
+      "category": "Study",
+      "status": "InProgress",
+      "priority": "Medium",
+      "dueInDays": 10,
+      "createdDaysAgo": 12
+    },
+    {
+      "title": "Read 'Clean Architecture'",
+      "description": "Chapters on boundaries and use cases.",
+      "category": "Study",
+      "status": "NotStarted",
+      "priority": "Low",
+      "dueInDays": null,
+      "createdDaysAgo": 4
+    },
+    {
+      "title": "Go for a 5 km run",
+      "description": null,
+      "category": "Health",
+      "status": "Completed",
+      "priority": "Low",
+      "dueInDays": null,
+      "createdDaysAgo": 1
+    },
+    {
+      "title": "Annual medical check-up",
+      "description": "Call the clinic to book.",
+      "category": "Health",
+      "status": "Archived",
+      "priority": "Medium",
+      "dueInDays": null,
+      "createdDaysAgo": 20
+    }
+  ]
+}

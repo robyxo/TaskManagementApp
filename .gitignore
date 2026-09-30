@@ -1,0 +1,47 @@
+# Visual Studio
+.vs/
+.vscode/
+*.sln.user
+*.user
+*.userosscache
+*.suo
+
+# Build results
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.pdb
+
+# Entity Framework Migrations (optional - comment if you want to track)
+Migrations/
+
+# NuGet
+.nuget/
+*.nupkg
+*.snupkg
+
+# Rider
+.idea/
+*.sln.iml
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node modules (for frontend tools if any)
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.local
+appsettings.local.json
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db

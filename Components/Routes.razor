@@ -1,0 +1,8 @@
+@* 1. The Router scans the assembly for classes with [Route] (routes come from AppRoutes in the .razor.cs files) *@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        @* 2. Every page is rendered inside MainLayout *@
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>

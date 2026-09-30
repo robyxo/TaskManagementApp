@@ -1,0 +1,52 @@
+@* 1. Static page (no @rendermode): login must write the auth cookie into the HTTP response *@
+<PageTitle>Log in - Task Management</PageTitle>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-4 text-center"><i class="bi bi-person-circle"></i> Log in</h1>
+
+                @* 2. Login error (wrong email or password) *@
+                @if (!string.IsNullOrEmpty(VM.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@VM.ErrorMessage</div>
+                }
+
+                @* 3. Form posted with POST: FormName lets Blazor recognise it *@
+                <EditForm Model="Input" method="post" OnValidSubmit="LoginAsync" FormName="login">
+                    <DataAnnotationsValidator />
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <InputText class="form-control" @bind-Value="Input.Email" autocomplete="username" />
+                        <ValidationMessage For="() => Input.Email" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <InputText type="password" class="form-control" @bind-Value="Input.Password" autocomplete="current-password" />
+                        <ValidationMessage For="() => Input.Password" />
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <InputCheckbox class="form-check-input" id="rememberMe" @bind-Value="Input.RememberMe" />
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Log in</button>
+                </EditForm>
+
+                <p class="text-center mt-3 mb-0 small">
+                    No account yet? <a href="@AppRoutes.Register">Sign up</a>
+                </p>
+
+                @* 4. Demo account, so whoever tries the project can log in right away *@
+                <div class="alert alert-light border small mt-4 mb-0">
+                    <strong>Demo account</strong><br />
+                    demo@taskmanager.local / Demo123!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

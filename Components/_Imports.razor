@@ -1,0 +1,19 @@
+@* 1. Usings shared by every Razor component, so I don't repeat them in each page *@
+@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@* 2. Needed to write @rendermode InteractiveServer in the pages *@
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@* 3. Needed for IJSRuntime (JavaScript calls from C#) *@
+@using Microsoft.JSInterop
+@* 4. Project namespaces *@
+@using TaskManagementApp
+@using TaskManagementApp.Components
+@using TaskManagementApp.Components.Layout
+@using TaskManagementApp.Models
+@using TaskManagementApp.Utils
+@using TaskManagementApp.ViewModels

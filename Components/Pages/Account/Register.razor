@@ -1,0 +1,52 @@
+@* 1. Static page like login: after sign-up I write the auth cookie *@
+<PageTitle>Sign up - Task Management</PageTitle>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-4 text-center"><i class="bi bi-person-plus"></i> Create account</h1>
+
+                @* 2. Identity errors (email already used, weak password, ...) *@
+                @if (!string.IsNullOrEmpty(VM.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@VM.ErrorMessage</div>
+                }
+
+                <EditForm Model="Input" method="post" OnValidSubmit="RegisterAsync" FormName="register">
+                    <DataAnnotationsValidator />
+
+                    <div class="mb-3">
+                        <label class="form-label">Full name</label>
+                        <InputText class="form-control" @bind-Value="Input.FullName" autocomplete="name" />
+                        <ValidationMessage For="() => Input.FullName" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <InputText class="form-control" @bind-Value="Input.Email" autocomplete="username" />
+                        <ValidationMessage For="() => Input.Email" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <InputText type="password" class="form-control" @bind-Value="Input.Password" autocomplete="new-password" />
+                        <ValidationMessage For="() => Input.Password" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirm password</label>
+                        <InputText type="password" class="form-control" @bind-Value="Input.ConfirmPassword" autocomplete="new-password" />
+                        <ValidationMessage For="() => Input.ConfirmPassword" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Sign up</button>
+                </EditForm>
+
+                <p class="text-center mt-3 mb-0 small">
+                    Already have an account? <a href="@AppRoutes.Login">Log in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
